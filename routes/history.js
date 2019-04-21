@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-router.post('/', function(request, response) {
-	var email = request.body.email;
-
+router.get('/', function(request, response) {
+	var email = request.query.email;
+	
 	if (email) {
 		global.connection.query('SELECT * FROM visits_unlocked WHERE email = ?', [email], function(error, results, fields) {
 
@@ -16,7 +16,7 @@ router.post('/', function(request, response) {
 			} else {
 				response.json({
             		status:401,
-            		message:'Some Error Occured'
+            		message:'No visits exists for this User'
         		})
 			}			
 			response.end();
