@@ -5,7 +5,7 @@ router.get('/', function(request, response) {
 	var email = request.query.email;
 	
 	if (email) {
-		global.connection.query('SELECT * FROM visits_unlocked WHERE email = ?', [email], function(error, results, fields) {
+		global.connection.query('SELECT * FROM visits_unlocked vu JOIN Restaurants r ON vu.res_id = r.res_id WHERE vu.email = ?', [email], function(error, results, fields) {
 
 			if (results.length > 0) {
 				response.json({
