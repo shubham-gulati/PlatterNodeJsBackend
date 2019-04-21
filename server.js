@@ -12,10 +12,23 @@ var users = require('./routes/users');
 var login = require('./routes/login');
 var signup = require('./routes/signup');
 var restaurants = require('./routes/restaurants');
+var visitUnlock = require('./routes/visitUnlock');
 var app = express();
 
 var mysql = require("mysql");
 //Database connection
+
+// app.use(function(req, res, next){
+// 	global.connection = mysql.createConnection({
+// 		host     : 'platter.czij2qpurlps.us-east-2.rds.amazonaws.com',
+// 		port	 :  3306,
+// 		user     : 'platter',
+// 		password : '$G237platter',
+// 		database : 'platter'
+// 	});
+// 	connection.connect();
+// 	next();
+// });
 
 app.use(function(req, res, next){
 	global.connection = mysql.createConnection({
@@ -43,7 +56,7 @@ app.use('/api/v1/signup', signup);
 app.use('/api/v1/users', users);
 app.use('/api/v1/restaurants', restaurants);
 app.use('/api/v1/login', login);
-
+app.use('/api/v1/visitUnlock', visitUnlock);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
