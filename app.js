@@ -13,6 +13,7 @@ var login = require('./routes/login');
 var signup = require('./routes/signup');
 var restaurants = require('./routes/restaurants');
 var visitUnlock = require('./routes/visitUnlock');
+var history = require('./routes/history');
 var app = express();
 
 var mysql = require("mysql");
@@ -57,6 +58,7 @@ app.use('/api/v1/users', users);
 app.use('/api/v1/restaurants', restaurants);
 app.use('/api/v1/login', login);
 app.use('/api/v1/visitUnlock', visitUnlock);
+app.use('/api/v1/history', history);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
