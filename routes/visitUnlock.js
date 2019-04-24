@@ -16,24 +16,25 @@ router.post('/', function(request, response) {
       return randomC(4)/Math.pow(2,4*8-1) * (high - low) + low;
     }
 
-    var data = {
+    var dataApp = {
         "res_id":request.body.user.name,
         "email":request.body.user.email,
         "unlock_datetime":today,
         "visit_code": random(6000,10000)
     }
 
-    global.connection.query('INSERT INTO visits_unlocked SET ?', data, function (error, results, fields) {
+    global.connection.query('INSERT INTO visits_unlocked SET ?', dataApp, function (error, results, fields) {
 
       if (error) {
         response.json({
-            status:false,
+            status:401,
             message:'There is some error with query'
         })
       } else{
           response.json({
-            status:true,
+            status:200,
             data:results,
+            visit_code: dataApp.visit_code,
             message:'Visit Registered Sucessfully'
         })
       }
