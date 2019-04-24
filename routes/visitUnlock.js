@@ -17,13 +17,15 @@ router.post('/', function(request, response) {
     }
 
     var dataApp = {
-        "res_id":request.body.user.name,
+        "res_id":request.body.user.res_id,
         "email":request.body.user.email,
         "unlock_datetime":today,
-        "visit_code": random(6000,10000)
+        "visit_code": Math.round(random(6000,10000))
     }
 
     global.connection.query('INSERT INTO visits_unlocked SET ?', dataApp, function (error, results, fields) {
+
+      console.log(error);
 
       if (error) {
         response.json({
