@@ -16,19 +16,11 @@ router.post('/', function(request, response) {
       return randomC(4)/Math.pow(2,4*8-1) * (high - low) + low;
     }
 
-    // var data = {
-    //     "res_id":request.body.user.name,
-    //     "email":request.body.user.email,
-    //     "unlock_datetime":today,
-    //     "visit_code": random(6000,10000)
-    // }
-
-
     var data = {
-        "res_id":request.body.res_id,
-        "email":request.body.email,
+        "res_id":request.body.user.name,
+        "email":request.body.user.email,
         "unlock_datetime":today,
-        "visit_code": Math.round(random(6000,10000))
+        "visit_code": random(6000,10000)
     }
 
     global.connection.query('INSERT INTO visits_unlocked SET ?', data, function (error, results, fields) {
