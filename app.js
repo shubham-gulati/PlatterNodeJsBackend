@@ -18,6 +18,7 @@ var visitUnlock = require('./routes/visitUnlock');
 var history = require('./routes/history');
 var userDetails = require('./routes/userDetails');
 var stripePayment = require('./routes/stripePayment');
+var newPlatterPartner = require('./routes/newPlatterPartner');
 var app = express();
 
 var mysql = require("mysql");
@@ -65,6 +66,7 @@ app.use('/api/v1/visitUnlock', visitUnlock);
 app.use('/api/v1/history', history);
 app.use('/api/v1/userDetails', userDetails);
 app.use('/api/v1/stripePayment', stripePayment);
+app.use('/api/v1/newPlatterPartner', newPlatterPartner);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
