@@ -3,7 +3,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var cors = require('cors');
 const bodyParser = require('body-parser');
+
 
 
 const stripe = require('stripe')('sk_test_Exsg9IzoUZSav22qakc5DmRk00X6zOi4Yq');
@@ -51,10 +53,14 @@ app.use(function(req, res, next){
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({limit: '50mb', extended: true}));
 app.use(cookieParser());
+app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
