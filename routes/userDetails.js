@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/', function(request, response) {
-	var email = request.query.email;
+router.post('/', function(request, response) {
+	var email = request.body.email;
 	
 	if (email) {
 		global.connection.query('SELECT * FROM Users WHERE email = ?',
