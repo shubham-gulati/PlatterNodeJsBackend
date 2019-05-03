@@ -11,7 +11,8 @@ router.post('/', function(request, response) {
 			if (results.length > 0) {
 				response.json({
             		status:200,
-            		message:'Succceful login'
+            		message:'Succceful login',
+            		results: results
         		})
 			} else {
 				response.json({
