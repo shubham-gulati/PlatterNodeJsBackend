@@ -2,8 +2,6 @@ var express = require('express');
 var router = express.Router();
 
 router.post('/', function(request, response) {
-	var today = new Date().toISOString().slice(0, 19).replace('T', ' ');
-  	//var encryptedString = cryptr.encrypt(req.body.password);
     
     var users = {
         "email":request.body.email,
