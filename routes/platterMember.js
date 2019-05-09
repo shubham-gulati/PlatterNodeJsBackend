@@ -15,7 +15,26 @@ router.post('/', function(request, response) {
             status:false,
             message:'There is some error with query'
         })
-      } else{
+      } else {
+
+        var today = new Date().toISOString().slice(0, 19).replace('T', ' ');
+
+        var dataApp = {
+          "payment_mode":"card",
+          "payment_datetime": today,
+          "email":request.body.email
+        }
+          
+         global.connection.query('INSERT INTO payment_history SET ?', dataApp, function (error, results, fields) {
+
+          if (error) {
+            response.json({
+                status:401,
+                message:'There is some error with query'
+            })
+          } 
+        });
+
           response.json({
             status:true,
             data:results,
